@@ -154,7 +154,7 @@ if __name__ == '__main__':
             exec(variable + f' = {args.__dict__[variable]}')
         else:
             debug(f"Setting {variable} from environment")
-            exec(variable + f' = {os.environ.get(variable)}')
+            exec(variable + f' = "{os.environ.get(variable)}"')
 
         if variable != 'TOWER_PASSWORD':
             debug(f"Variable: {variable} = {globals()[variable]}")
