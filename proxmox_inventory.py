@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 import json
 import os
@@ -148,7 +150,7 @@ def main() -> None:
 
     args.TOWER_USERNAME = args.TOWER_USERNAME or get_env_var('TOWER_USERNAME')
     args.TOWER_PASSWORD = args.TOWER_PASSWORD or get_env_var('TOWER_PASSWORD')
-    args.proxmox_host = args.proxmox_host or os.environ.get('proxmox_host')
+    args.proxmox_host = args.proxmox_host or get_env_var('proxmox_host')
 
     if not args.proxmox_host:
         sys.stderr.write("[ERROR] Unable to determine ProxMox server\n")
@@ -177,7 +179,7 @@ def parse_args() -> argparse.Namespace:
                         help='Set debug level (enabled debugging)')
     parser.add_argument('--list', action='store_true', dest='list_instances',
                         help='Output AAP Inventory (default: false)')
-    parser.add_argument('--host', action='store', dest='proxmox_host', default='proxmox0',
+    parser.add_argument('--proxmox_host', action='store', 
                         help='Proxmox host to use for inventory src')
     parser.add_argument('--user', action='store', dest='TOWER_USERNAME', help='ProxMox user')
     parser.add_argument('--pass', action='store', dest='TOWER_PASSWORD', help='ProxMox password')
